@@ -19,7 +19,7 @@ index = pc.Index(settings.PINECONE_INDEX)
 def get_menu_items():
     query = """
     {
-        menus {
+        findAllNotPaginate  {
             id
             name
             description
@@ -27,13 +27,16 @@ def get_menu_items():
         }
     }
     """
+    print("ENDPOINT ", settings.NESTJS_MENU_ENDPOINT)
+    print("QUERY ", query)
     response = requests.post(
         settings.NESTJS_MENU_ENDPOINT,
-        json={"query": query}
+        json={"query": query},
+        headers={"Content-Type": "application/json", "Accept": "application/json"}
     )
     response.raise_for_status()
     data = response.json()
-    return data["data"]["menus"]
+    return data["data"]["findAllNotPaginate"]
 
 # Hàm sinh vector embedding từ ảnh
 @torch.no_grad()
