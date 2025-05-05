@@ -54,3 +54,5 @@ docker-compose.override.yml
 # ===== FastAPI Specific (nếu có) =====
 static/uploads/
 static/tmp/
+
+seeding_pinecone.py
